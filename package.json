@@ -1,24 +1,24 @@
 {
-  "name": "saucedemo-cypress",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AvtandilGachechiladze/saucedemo-cypress.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AvtandilGachechiladze/saucedemo-cypress/issues"
-  },
-  "homepage": "https://github.com/AvtandilGachechiladze/saucedemo-cypress#readme",
-  "devDependencies": {
-    "cypress": "^10.0.3",
-    "prettier": "2.6.2"
-  }
+    "name": "saucedemo-cypress",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AvtandilGachechiladze/saucedemo-cypress.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/AvtandilGachechiladze/saucedemo-cypress/issues"
+    },
+    "homepage": "https://github.com/AvtandilGachechiladze/saucedemo-cypress#readme",
+    "devDependencies": {
+        "cypress": "^10.0.3",
+        "prettier": "2.6.2"
+    }
 }
