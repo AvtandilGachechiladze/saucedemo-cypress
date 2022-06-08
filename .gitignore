@@ -1,9 +1,7 @@
-# IntelliJ project files
-.idea
-*.iml
-out
-gen
 # Cypress project files
 node_modules
 cypress/videos
 cypress/screenshots
+
+# Webstorm files
+.idea
