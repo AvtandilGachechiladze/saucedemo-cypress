@@ -15,3 +15,10 @@ Cypress.Commands.add('submitLoginForm', (username, password) => {
 
     cy.get(loginPage.loginButton).should('exist').should('be.visible').click();
 });
+
+Cypress.Commands.add('checkLoginFormErrorMessage', (errorMessageText) => {
+    cy.get(loginPage.errorMessage)
+        .should('exist')
+        .should('be.visible')
+        .should('have.text', errorMessageText);
+});
