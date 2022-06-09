@@ -2,10 +2,11 @@ const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
     e2e: {
-        viewportHeight: 1920,
-        viewportWidth: 1080,
+        viewportWidth: 1920,
+        viewportHeight: 1080,
+        baseUrl: 'https://www.saucedemo.com',
+        chromeWebSecurity: false,
         watchForFileChanges: false,
-        baseUrl: 'https://www.saucedemo.com/',
         video: false,
         screenshotOnRunFailure: false,
         trashAssetsBeforeRuns: true,
