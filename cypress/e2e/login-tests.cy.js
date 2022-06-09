@@ -2,30 +2,77 @@ import selectors from '../helpers/selectors';
 import testData from '../helpers/testData';
 
 const loginPage = selectors.loginPage;
-const account = testData.account;
+const users = testData.account.users;
+const passwords = testData.account.passwords;
+const errorMessages = testData.errorMessages;
 
-before(() => {
+beforeEach(() => {
     cy.visit('/');
 });
 
-describe('Login page', () => {
-    it('should have username input', () => {
-        cy.get(loginPage.usernameInput).should('exist').should('be.visible');
+describe.only('User', () => {
+    for (const user in users) {
+        it('should login and be redirected to inventory page', () => {
+            cy.get(loginPage.usernameInput)
+                .should('exist')
+                .should('be.visible')
+                .type(users[user]);
+
+            cy.get(loginPage.passwordInput)
+                .should('exist')
+                .should('be.visible')
+                .type(passwords.correct);
+
+            cy.get(loginPage.loginButton)
+                .should('exist')
+                .should('be.visible')
+                .click();
+
+            cy.url().should('contain', '/inventory.html');
+        });
+    }
+
+    it('should be shown locked out error message', () => {
+        cy.get(loginPage.usernameInput)
+            .should('exist')
+            .should('be.visible')
+            .type(users.lockedOutUser);
+
+        cy.get(loginPage.passwordInput)
+            .should('exist')
+            .should('be.visible')
+            .type(passwords.correct);
+
+        cy.get(loginPage.loginButton)
+            .should('exist')
+            .should('be.visible')
+            .click();
+
+        cy.get(loginPage.errorMessage)
+            .should('exist')
+            .should('be.visible')
+            .should('have.text', errorMessages.lockedOutUser);
     });
 
-    it('should have password input', () => {
-        cy.get(loginPage.passwordInput).should('exist').should('be.visible');
-    });
+    it('should be shown wrong username or password error message', () => {
+        cy.get(loginPage.usernameInput)
+            .should('exist')
+            .should('be.visible')
+            .type(users.standardUser);
 
-    it('should have login button', () => {
-        cy.get(loginPage.loginButton).should('exist').should('be.visible');
-    });
-});
+        cy.get(loginPage.passwordInput)
+            .should('exist')
+            .should('be.visible')
+            .type(passwords.incorrect);
 
-describe('User', () => {
-    it('should login via ui', () => {
-        cy.get(loginPage.usernameInput).type(account.standardUsername);
-        cy.get(loginPage.passwordInput).type(account.password);
-        cy.get(loginPage.loginButton).click();
+        cy.get(loginPage.loginButton)
+            .should('exist')
+            .should('be.visible')
+            .click();
+
+        cy.get(loginPage.errorMessage)
+            .should('exist')
+            .should('be.visible')
+            .should('have.text', errorMessages.wrongUsernameOrPassword);
     });
 });
