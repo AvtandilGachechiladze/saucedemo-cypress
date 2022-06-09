@@ -22,3 +22,18 @@ Cypress.Commands.add('checkLoginFormErrorMessage', (errorMessageText) => {
         .should('be.visible')
         .should('have.text', errorMessageText);
 });
+
+Cypress.Commands.add('login', (username) => {
+    cy.session(
+        username,
+        () => {
+            cy.setCookie('session-username', username);
+        },
+        {
+            validate() {
+                cy.visit('/');
+                cy.url().should('contain', '/inventory.html');
+            },
+        }
+    );
+});
