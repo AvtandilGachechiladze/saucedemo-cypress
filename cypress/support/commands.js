@@ -61,3 +61,46 @@ Cypress.Commands.add('loginByUI', (username, password) => {
         }
     );
 });
+
+Cypress.Commands.add(
+    'getAndVerifyTextElementsSort',
+    (selector, reversed = false) => {
+        cy.get(selector).then(($els) =>
+            cy.wrap(Cypress._.map($els, 'innerText')).then((val) => {
+                if (reversed) {
+                    expect(val).to.deep.eq(Array.from(val).sort().reverse());
+                } else {
+                    expect(val).to.deep.eq(Array.from(val).sort());
+                }
+            })
+        );
+    }
+);
+
+Cypress.Commands.add(
+    'getAndVerifyNumericElementsSort',
+    (selector, reversed = false) => {
+        cy.get(selector).then(($els) =>
+            cy.wrap(Cypress._.map($els, 'innerText')).then((val) => {
+                val.forEach((element, index) => {
+                    val[index] = element.replace(/[^\d.,]/g, '');
+                });
+                if (reversed) {
+                    expect(val).to.deep.eq(
+                        Array.from(val)
+                            .sort(function (a, b) {
+                                return a - b;
+                            })
+                            .reverse()
+                    );
+                } else {
+                    expect(val).to.deep.eq(
+                        Array.from(val).sort(function (a, b) {
+                            return a - b;
+                        })
+                    );
+                }
+            })
+        );
+    }
+);

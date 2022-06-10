@@ -37,5 +37,33 @@ declare namespace Cypress {
          *   .loginByUI(username, password)
          */
         loginByUI(username, password);
+
+        /**
+         * Gets a list of elements by the given selector and verifies that elements are alphabetically sorted
+         * It accepts a second boolean parameter, by default its value is false, if "true" is given actual list will be compared to an alphabetically sorted and reversed list
+         *
+         * @example
+         * cy
+         *   .getAndVerifyTextElementsSort(selector)
+         *
+         * @example
+         * cy
+         *   .getAndVerifyTextElementsSort(selector, true)
+         */
+        getAndVerifyTextElementsSort(selector, reversed?);
+
+        /**
+         * Gets a list of elements by the given selector, removes non-numeric symbols, and verifies that elements are ascending
+         * It accepts a second boolean parameter, by default its value is false, if "true" is given actual list will be compared to a descending list
+         *
+         * @example
+         * cy
+         *   .getAndVerifyNumericElementsSort(selector)
+         *
+         * @example
+         * cy
+         *   .getAndVerifyNumericElementsSort(selector, true)
+         */
+        getAndVerifyNumericElementsSort(selector, reversed?);
     }
 }
