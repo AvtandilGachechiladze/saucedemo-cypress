@@ -19,5 +19,23 @@ declare namespace Cypress {
          *   .checkLoginFormErrorMessage(errorMessageText)
          */
         checkLoginFormErrorMessage(errorMessageText);
+
+        /**
+         * Sets a session cookie using provided username
+         *
+         * @example
+         * cy
+         *   .login(username)
+         */
+        login(username);
+
+        /**
+         * Logs in by UI with provided credentials
+         *
+         * @example
+         * cy
+         *   .loginByUI(username, password)
+         */
+        loginByUI(username, password);
     }
 }

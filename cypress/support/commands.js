@@ -22,3 +22,42 @@ Cypress.Commands.add('checkLoginFormErrorMessage', (errorMessageText) => {
         .should('be.visible')
         .should('have.text', errorMessageText);
 });
+
+Cypress.Commands.add('login', (username) => {
+    cy.session(
+        username,
+        () => {
+            cy.setCookie('session-username', username);
+        },
+        {
+            validate() {
+                cy.getCookie('session-username').should(
+                    'have.property',
+                    'value',
+                    username
+                );
+            },
+        }
+    );
+});
+
+Cypress.Commands.add('loginByUI', (username, password) => {
+    cy.session(
+        [username, password],
+        () => {
+            cy.visit('/');
+            cy.get(loginPage.usernameInput).type(username);
+            cy.get(loginPage.passwordInput).type(password);
+            cy.get(loginPage.loginButton).click();
+        },
+        {
+            validate() {
+                cy.getCookie('session-username').should(
+                    'have.property',
+                    'value',
+                    username
+                );
+            },
+        }
+    );
+});
