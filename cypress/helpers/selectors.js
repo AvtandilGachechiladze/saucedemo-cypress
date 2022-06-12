@@ -12,5 +12,6 @@ export default {
         itemPrices: '.inventory_item_price',
         itemDescriptions: '.inventory_item_description',
         itemImages: '.inventory_item_img',
+        cartBadge: '.shopping_cart_badge',
     },
 };

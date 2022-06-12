@@ -8,7 +8,7 @@ beforeEach(() => {
     cy.visit('/inventory.html', { failOnStatusCode: false });
 });
 
-describe('Products', () => {
+describe('Product items', () => {
     //TODO check if onclick opens details, check if on click adds to cart
 
     it('should be visible', () => {
@@ -62,5 +62,23 @@ describe('Products', () => {
             .each((button) => {
                 expect(button).to.have.text('Add to cart');
             });
+    });
+
+    it('should open details page after clicking on name', () => {
+        cy.get(productsPage.items).find(productsPage.itemNames).first().click();
+        cy.url().should('contain', '/inventory-item.html?id=');
+    });
+
+    it('should open details page after clicking on image', () => {
+        cy.get(productsPage.items)
+            .find(productsPage.itemImages)
+            .first()
+            .click();
+        cy.url().should('contain', '/inventory-item.html?id=');
+    });
+
+    it('should be added to cart after clicking "add to cart" button', () => {
+        cy.get(productsPage.items).find('button').first().click();
+        cy.get(productsPage.cartBadge).should('have.text', 1);
     });
 });
