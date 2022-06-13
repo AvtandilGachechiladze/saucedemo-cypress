@@ -13,7 +13,6 @@ describe('Product items', () => {
 
     it('should be visible', () => {
         cy.get(productsPage.items)
-            .should('exist')
             .should('be.visible')
             .should('have.length', 6);
     });
@@ -21,7 +20,6 @@ describe('Product items', () => {
     it('should have names', () => {
         cy.get(productsPage.items)
             .find(productsPage.itemNames)
-            .should('exist')
             .should('be.visible')
             .should('have.length', 6);
     });
@@ -29,7 +27,6 @@ describe('Product items', () => {
     it('should have prices', () => {
         cy.get(productsPage.items)
             .find(productsPage.itemPrices)
-            .should('exist')
             .should('be.visible')
             .should('have.length', 6);
     });
@@ -37,7 +34,6 @@ describe('Product items', () => {
     it('should have descriptions', () => {
         cy.get(productsPage.items)
             .find(productsPage.itemDescriptions)
-            .should('exist')
             .should('be.visible')
             .should('have.length', 6);
     });
@@ -46,9 +42,7 @@ describe('Product items', () => {
         cy.get(productsPage.items)
             .find(productsPage.itemImages)
             .find('img')
-            .should('exist')
             .should('have.length', 6)
-            .should('be.visible')
             .each((image) => {
                 cy.wrap(image)
                     .should('have.prop', 'naturalWidth')
@@ -56,15 +50,14 @@ describe('Product items', () => {
             });
     });
 
-    it('should have "add to cart" buttons', () => {
+    it('should have buttons', () => {
         //TODO check individuality
         cy.get(productsPage.items)
             .find('button')
-            .should('exist')
             .should('be.visible')
             .should('have.length', 6)
             .each((button) => {
-                expect(button).to.have.text('Add to cart');
+                cy.wrap(button).should('have.text', 'Add to cart');
             });
     });
 
