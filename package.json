@@ -20,7 +20,7 @@
     },
     "homepage": "https://github.com/AvtandilGachechiladze/saucedemo-cypress#readme",
     "devDependencies": {
-        "cypress": "^10.0.3",
+        "cypress": "^10.1.0",
         "husky": "^8.0.1",
         "lint-staged": "^13.0.0",
         "prettier": "2.6.2"
