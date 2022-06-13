@@ -65,5 +65,14 @@ declare namespace Cypress {
          *   .getAndVerifyNumericElementsSort(selector, true)
          */
         getAndVerifyNumericElementsSort(selector, reversed?);
+
+        /**
+         * Verifies that url contains details page link and returns to previous page
+         *
+         * @example
+         * cy
+         *   .verifyItemDetailsPageIsOpen()
+         */
+        verifyItemDetailsPageIsOpen();
     }
 }
