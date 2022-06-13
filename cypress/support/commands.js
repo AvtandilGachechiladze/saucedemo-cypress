@@ -104,3 +104,8 @@ Cypress.Commands.add(
         );
     }
 );
+
+Cypress.Commands.add('verifyItemDetailsPageIsOpen', () => {
+    cy.url().should('contain', '/inventory-item.html?id=');
+    cy.go('back');
+});

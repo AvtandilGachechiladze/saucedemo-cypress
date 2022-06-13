@@ -61,20 +61,25 @@ describe('Product items', () => {
             });
     });
 
-    it('should open details page after clicking on name', () => {
-        cy.get(productsPage.items).find(productsPage.itemNames).first().click();
-        cy.url().should('contain', '/inventory-item.html?id=');
+    it('name should open details page after clicking on it', () => {
+        cy.get(productsPage.itemNames).then((items) => {
+            for (let i = 0; i < items.length; i++) {
+                cy.get(productsPage.itemNames).eq(i).click();
+                cy.verifyItemDetailsPageIsOpen();
+            }
+        });
     });
 
-    it('should open details page after clicking on image', () => {
-        cy.get(productsPage.items)
-            .find(productsPage.itemImages)
-            .first()
-            .click();
-        cy.url().should('contain', '/inventory-item.html?id=');
+    it('image should open details page after clicking on it', () => {
+        cy.get(productsPage.itemImages).then((items) => {
+            for (let i = 0; i < items.length; i++) {
+                cy.get(productsPage.itemImages).eq(i).click();
+                cy.verifyItemDetailsPageIsOpen();
+            }
+        });
     });
 
-    it('should be added to cart after clicking "add to cart" button', () => {
+    it.skip('should be added to cart after clicking "add to cart" button', () => {
         cy.get(productsPage.items).find('button').first().click();
         cy.get(productsPage.cartBadge).should('have.text', 1);
     });
