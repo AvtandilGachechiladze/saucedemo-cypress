@@ -43,13 +43,17 @@ describe('Product items', () => {
     });
 
     it('should have images', () => {
-        //TODO check if image is loaded
         cy.get(productsPage.items)
             .find(productsPage.itemImages)
             .find('img')
             .should('exist')
+            .should('have.length', 6)
             .should('be.visible')
-            .should('have.length', 6);
+            .each((image) => {
+                cy.wrap(image)
+                    .should('have.prop', 'naturalWidth')
+                    .and('be.greaterThan', 0);
+            });
     });
 
     it('should have "add to cart" buttons', () => {
