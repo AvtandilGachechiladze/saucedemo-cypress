@@ -7,7 +7,11 @@ export default {
     },
     productsPage: {
         sortButton: '[data-test="product_sort_container"]',
+        items: '.inventory_item',
         itemNames: '.inventory_item_name',
         itemPrices: '.inventory_item_price',
+        itemDescriptions: '.inventory_item_description',
+        itemImages: '.inventory_item_img',
+        cartBadge: '.shopping_cart_badge',
     },
 };
