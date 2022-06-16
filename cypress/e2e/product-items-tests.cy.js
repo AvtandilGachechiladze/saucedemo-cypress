@@ -87,10 +87,9 @@ describe('Product items', () => {
                 .click()
                 .then(() => {
                     cy.get('@item')
-                        .find('a')
-                        .invoke('attr', 'id')
+                        .getItemId()
                         .should(
-                            'contain',
+                            'equal',
                             JSON.parse(
                                 localStorage.getItem('cart-contents')
                             ).at(-1)

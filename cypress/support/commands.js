@@ -110,3 +110,12 @@ Cypress.Commands.add('verifyItemDetailsPageIsOpen', () => {
     cy.url().should('contain', '/inventory-item.html?id=');
     cy.go('back');
 });
+
+Cypress.Commands.add('getItemId', { prevSubject: true }, (subject) => {
+    cy.wrap(subject)
+        .find('a')
+        .invoke('attr', 'id')
+        .then((id) => {
+            return cy.wrap(parseInt(id.replace(/\D/g, '')));
+        });
+});
