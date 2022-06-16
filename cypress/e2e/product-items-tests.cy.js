@@ -9,8 +9,6 @@ beforeEach(() => {
 });
 
 describe('Product items', () => {
-    //TODO check if onclick opens details, check if on click adds to cart
-
     it('should be visible', () => {
         cy.get(productsPage.items)
             .should('be.visible')
@@ -81,23 +79,28 @@ describe('Product items', () => {
 
     it.only('should be added to cart after clicking "add to cart" button', () => {
         expect(localStorage.getItem('cart-contents')).to.be.null;
-        cy.get(productsPage.items)
-            .find('button')
-            .each((button, index) => {
-                cy.wrap(button)
-                    .click()
-                    .then(() => {
-                        expect(localStorage.getItem('cart-contents')).not.to.be
-                            .null;
-                        //TODO check individual id.
-                        // expect(
-                        //     localStorage.getItem('cart-contents')
-                        // ).to.contain(4);
-                        cy.get(productsPage.cartBadge).should(
-                            'have.text',
-                            index + 1
+
+        cy.get(productsPage.items).each((item, index) => {
+            cy.wrap(item)
+                .as('item')
+                .find('button')
+                .click()
+                .then(() => {
+                    cy.get('@item')
+                        .find('a')
+                        .invoke('attr', 'id')
+                        .should(
+                            'contain',
+                            JSON.parse(
+                                localStorage.getItem('cart-contents')
+                            ).at(-1)
                         );
-                    });
-            });
+
+                    cy.get(productsPage.cartBadge).should(
+                        'have.text',
+                        index + 1
+                    );
+                });
+        });
     });
 });
