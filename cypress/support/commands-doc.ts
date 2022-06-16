@@ -74,5 +74,15 @@ declare namespace Cypress {
          *   .verifyItemDetailsPageIsOpen()
          */
         verifyItemDetailsPageIsOpen();
+
+        /**
+         * Returns id of products item element
+         * Needs previous subject
+         *
+         * @example
+         * cy
+         *   .getItemId()
+         */
+        getItemId();
     }
 }
