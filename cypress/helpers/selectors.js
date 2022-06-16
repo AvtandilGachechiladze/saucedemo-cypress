@@ -14,4 +14,12 @@ export default {
         itemImages: '.inventory_item_img',
         cartBadge: '.shopping_cart_badge',
     },
+    detailsPage: {
+        itemName: '.inventory_details_name',
+        itemDescription: '.inventory_details_desc',
+        itemImage: '.inventory_details_img',
+        itemPrice: '.inventory_details_price',
+        backToProductsButton: '[data-test="back-to-products"]',
+        addToCart: '*[data-test^="add-to-cart"]',
+    },
 };
