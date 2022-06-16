@@ -79,8 +79,25 @@ describe('Product items', () => {
         });
     });
 
-    it.skip('should be added to cart after clicking "add to cart" button', () => {
-        cy.get(productsPage.items).find('button').first().click();
-        cy.get(productsPage.cartBadge).should('have.text', 1);
+    it.only('should be added to cart after clicking "add to cart" button', () => {
+        expect(localStorage.getItem('cart-contents')).to.be.null;
+        cy.get(productsPage.items)
+            .find('button')
+            .each((button, index) => {
+                cy.wrap(button)
+                    .click()
+                    .then(() => {
+                        expect(localStorage.getItem('cart-contents')).not.to.be
+                            .null;
+                        //TODO check individual id.
+                        // expect(
+                        //     localStorage.getItem('cart-contents')
+                        // ).to.contain(4);
+                        cy.get(productsPage.cartBadge).should(
+                            'have.text',
+                            index + 1
+                        );
+                    });
+            });
     });
 });
