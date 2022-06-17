@@ -76,6 +76,15 @@ declare namespace Cypress {
         verifyItemDetailsPageIsOpen();
 
         /**
+         * Verifies that url contains items page link and returns to previous page
+         *
+         * @example
+         * cy
+         *   .verifyItemsPageIsOpen()
+         */
+        verifyItemsPageIsOpen();
+
+        /**
          * Returns id of products item element
          * Needs previous subject
          *

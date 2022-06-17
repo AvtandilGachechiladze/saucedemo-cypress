@@ -1,5 +1,4 @@
 import selectors from '../helpers/selectors';
-
 const loginPage = selectors.loginPage;
 
 Cypress.Commands.add('submitLoginForm', (username, password) => {
@@ -108,6 +107,11 @@ Cypress.Commands.add(
 Cypress.Commands.add('verifyItemDetailsPageIsOpen', () => {
     //TODO check individual id.
     cy.url().should('contain', '/inventory-item.html?id=');
+    cy.go('back');
+});
+
+Cypress.Commands.add('verifyItemsPageIsOpen', () => {
+    cy.url().should('eq', Cypress.config('baseUrl') + '/inventory.html');
     cy.go('back');
 });
 
