@@ -12,6 +12,15 @@ declare namespace Cypress {
         submitLoginForm(username, password);
 
         /**
+         * Checks if session is created for given username
+         *
+         * @example
+         * cy
+         *   .verifyUserIsAuthorized(username)
+         */
+        verifyUserIsAuthorized(username);
+
+        /**
          * Checks if an error message exists and compares provided error message text with an actual error message
          *
          * @example

@@ -1,29 +1,25 @@
 import testData from '../helpers/testData';
+import selectors from '../helpers/selectors';
 const users = testData.account.users;
 const passwords = testData.account.passwords;
 const errorMessages = testData.errorMessages;
+const loginPage = selectors.loginPage;
 
 beforeEach(() => {
     cy.visit('/');
 });
 
 describe('User', () => {
-    /* TODO
-        check for multiple users, including performance glitch and problem users
-        and add more reliable way to confirm that user is logged in and redirected to inventory page
-    */
-    /*
-    for (const user in users) {
-        it.skip('should login and be redirected to inventory page', () => {
-            cy.submitLoginForm(users[user], passwords.correct);
-            cy.url().should('contain', '/inventory.html');
-        });
-    }
-    */
+    it('should see login form', () => {
+        cy.get(loginPage.usernameInput).should('be.visible');
+        cy.get(loginPage.passwordInput).should('be.visible');
+        cy.get(loginPage.loginButton).should('be.visible');
+    });
 
-    it('should login and be redirected to inventory page', () => {
+    it('should be authorized and redirected to items page', () => {
         cy.submitLoginForm(users.standardUser, passwords.correct);
-        cy.url().should('contain', '/inventory.html');
+        cy.verifyUserIsAuthorized(users.standardUser);
+        cy.verifyItemsPageIsOpen();
     });
 
     it('should be shown locked out error message', () => {

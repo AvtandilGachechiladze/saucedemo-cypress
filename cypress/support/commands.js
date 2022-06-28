@@ -2,24 +2,19 @@ import selectors from '../helpers/selectors';
 const loginPage = selectors.loginPage;
 
 Cypress.Commands.add('submitLoginForm', (username, password) => {
-    cy.get(loginPage.usernameInput)
-        .should('exist')
-        .should('be.visible')
-        .type(username);
+    cy.get(loginPage.usernameInput).type(username);
+    cy.get(loginPage.passwordInput).type(password);
+    cy.get(loginPage.loginButton).click();
+});
 
-    cy.get(loginPage.passwordInput)
-        .should('exist')
-        .should('be.visible')
-        .type(password);
-
-    cy.get(loginPage.loginButton).should('exist').should('be.visible').click();
+Cypress.Commands.add('verifyUserIsAuthorized', (username) => {
+    cy.getCookie('session-username').should('have.property', 'value', username);
 });
 
 Cypress.Commands.add('checkLoginFormErrorMessage', (errorMessageText) => {
     cy.get(loginPage.errorMessage)
-        .should('exist')
-        .should('be.visible')
-        .should('have.text', errorMessageText);
+        .should('have.text', errorMessageText)
+        .should('be.visible');
 });
 
 Cypress.Commands.add('login', (username) => {
@@ -30,13 +25,15 @@ Cypress.Commands.add('login', (username) => {
         },
         {
             validate() {
+                //todo
+                // cy.verifyUserIsAuthorized();
                 cy.getCookie('session-username').should(
                     'have.property',
                     'value',
-                    username
+                    username,
                 );
             },
-        }
+        },
     );
 });
 
@@ -54,10 +51,10 @@ Cypress.Commands.add('loginByUI', (username, password) => {
                 cy.getCookie('session-username').should(
                     'have.property',
                     'value',
-                    username
+                    username,
                 );
             },
-        }
+        },
     );
 });
 
@@ -71,9 +68,9 @@ Cypress.Commands.add(
                 } else {
                     expect(val).to.deep.eq(Array.from(val).sort());
                 }
-            })
+            }),
         );
-    }
+    },
 );
 
 Cypress.Commands.add(
@@ -90,18 +87,18 @@ Cypress.Commands.add(
                             .sort(function (a, b) {
                                 return a - b;
                             })
-                            .reverse()
+                            .reverse(),
                     );
                 } else {
                     expect(val).to.deep.eq(
                         Array.from(val).sort(function (a, b) {
                             return a - b;
-                        })
+                        }),
                     );
                 }
-            })
+            }),
         );
-    }
+    },
 );
 
 Cypress.Commands.add('verifyItemDetailsPageIsOpen', () => {
@@ -112,6 +109,7 @@ Cypress.Commands.add('verifyItemDetailsPageIsOpen', () => {
 
 Cypress.Commands.add('verifyItemsPageIsOpen', () => {
     cy.url().should('eq', Cypress.config('baseUrl') + '/inventory.html');
+    //todo may not be needed
     cy.go('back');
 });
 
