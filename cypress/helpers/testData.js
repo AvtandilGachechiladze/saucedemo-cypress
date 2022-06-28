@@ -23,4 +23,12 @@ export default {
         lowToHigh: 'lohi',
         highToLow: 'hilo',
     },
+    regex: {
+        selectEverythingButDigitsCommas: '/[^\\d.,]/g',
+        selectEverythingButDigit: '/\\D/g',
+    },
+    links: {
+        itemsPage: '/inventory.html',
+        itemDetailsPage: '/inventory-item.html?id=',
+    },
 };
