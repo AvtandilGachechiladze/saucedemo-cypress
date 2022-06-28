@@ -93,5 +93,15 @@ declare namespace Cypress {
          *   .getItemId()
          */
         getItemId();
+
+        /**
+         * Adds items to cart
+         * Reloads page
+         *
+         * @example
+         * cy
+         *   .addItemsToCart('[4,0]')
+         */
+        addItemsToCart(items);
     }
 }

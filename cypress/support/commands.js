@@ -123,3 +123,9 @@ Cypress.Commands.add('getItemId', { prevSubject: true }, (subject) => {
             return cy.wrap(parseInt(id.replace(/\D/g, '')));
         });
 });
+
+Cypress.Commands.add('addItemsToCart', (items) => {
+    localStorage.setItem('cart-contents', items);
+    expect(localStorage.getItem('cart-contents')).to.eq(items);
+    cy.reload();
+});
