@@ -5,7 +5,7 @@ export default {
         loginButton: '[data-test="login-button"]',
         errorMessage: '[data-test="error"]',
     },
-    productsPage: {
+    itemsPage: {
         sortButton: '[data-test="product_sort_container"]',
         items: '.inventory_item',
         itemNames: '.inventory_item_name',
@@ -13,6 +13,7 @@ export default {
         itemDescriptions: '.inventory_item_description',
         itemImages: '.inventory_item_img',
         cartBadge: '.shopping_cart_badge',
+        addToCart: '*[data-test^="add-to-cart"]',
     },
     detailsPage: {
         itemName: '.inventory_details_name',

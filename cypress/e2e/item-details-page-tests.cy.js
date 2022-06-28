@@ -1,7 +1,7 @@
 import testData from '../helpers/testData';
 import selectors from '../helpers/selectors';
 const users = testData.account.users;
-const productsPage = selectors.productsPage;
+const productsPage = selectors.itemsPage;
 const detailsPage = selectors.detailsPage;
 //TODO expand list, better if it'll be dynamic
 const productIds = [0, 4];
@@ -28,7 +28,9 @@ describe('Item', () => {
                 .then(() => {
                     cy.url().should(
                         'contain',
-                        JSON.parse(localStorage.getItem('cart-contents')).at(-1)
+                        JSON.parse(localStorage.getItem('cart-contents')).at(
+                            -1,
+                        ),
                     );
 
                     cy.get(productsPage.cartBadge).should('have.text', 1);

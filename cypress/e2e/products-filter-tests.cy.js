@@ -1,7 +1,7 @@
 import testData from '../helpers/testData';
 import selectors from '../helpers/selectors';
 const users = testData.account.users;
-const productsPage = selectors.productsPage;
+const productsPage = selectors.itemsPage;
 
 beforeEach(() => {
     cy.login(users.standardUser);

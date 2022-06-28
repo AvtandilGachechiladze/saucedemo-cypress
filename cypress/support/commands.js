@@ -102,7 +102,6 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add('verifyItemDetailsPageIsOpen', () => {
-    //TODO check individual id.
     cy.url().should('contain', '/inventory-item.html?id=');
     cy.go('back');
 });
