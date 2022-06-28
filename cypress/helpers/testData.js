@@ -18,5 +18,9 @@ export default {
     },
     values: {
         numberOfItems: 6,
+        a_to_z: 'az',
+        z_to_a: 'za',
+        lowToHigh: 'lohi',
+        highToLow: 'hilo',
     },
 };

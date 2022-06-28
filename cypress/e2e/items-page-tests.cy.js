@@ -92,4 +92,32 @@ describe('Items', () => {
                 });
         });
     });
+
+    it('should be filtered by name(a to z)', () => {
+        cy.get(itemsPage.sortButton).select(values.a_to_z);
+        cy.get(itemsPage.itemNames).then(($els) => {
+            cy.verifyTextElementsSort($els);
+        });
+    });
+
+    it('should be filtered by name(z to a)', () => {
+        cy.get(itemsPage.sortButton).select(values.z_to_a);
+        cy.get(itemsPage.itemNames).then(($els) => {
+            cy.verifyTextElementsSort($els, true);
+        });
+    });
+
+    it('should be filtered by price(low to high)', () => {
+        cy.get(itemsPage.sortButton).select(values.lowToHigh);
+        cy.get(itemsPage.itemPrices).then(($els) => {
+            cy.verifyNumericElementsSort($els);
+        });
+    });
+
+    it('should be filtered by price(high to low)', () => {
+        cy.get(itemsPage.sortButton).select(values.highToLow);
+        cy.get(itemsPage.itemPrices).then(($els) => {
+            cy.verifyNumericElementsSort($els, true);
+        });
+    });
 });

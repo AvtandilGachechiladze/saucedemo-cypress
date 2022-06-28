@@ -48,32 +48,32 @@ declare namespace Cypress {
         loginByUI(username, password);
 
         /**
-         * Gets a list of elements by the given selector and verifies that elements are alphabetically sorted
+         * Gets a jquery list of elements and verifies that elements are alphabetically sorted
          * It accepts a second boolean parameter, by default its value is false, if "true" is given actual list will be compared to an alphabetically sorted and reversed list
          *
          * @example
          * cy
-         *   .getAndVerifyTextElementsSort(selector)
+         *   .verifyTextElementsSort(jqueryList)
          *
          * @example
          * cy
-         *   .getAndVerifyTextElementsSort(selector, true)
+         *   .verifyTextElementsSort(jqueryList, true)
          */
-        getAndVerifyTextElementsSort(selector, reversed?);
+        verifyTextElementsSort(selector, reversed?);
 
         /**
-         * Gets a list of elements by the given selector, removes non-numeric symbols, and verifies that elements are ascending
+         * Gets a list of jquery elements removes non-numeric symbols, and verifies that elements are ascending
          * It accepts a second boolean parameter, by default its value is false, if "true" is given actual list will be compared to a descending list
          *
          * @example
          * cy
-         *   .getAndVerifyNumericElementsSort(selector)
+         *   .verifyNumericElementsSort(jqueryList)
          *
          * @example
          * cy
-         *   .getAndVerifyNumericElementsSort(selector, true)
+         *   .verifyNumericElementsSort(jqueryList, true)
          */
-        getAndVerifyNumericElementsSort(selector, reversed?);
+        verifyNumericElementsSort(selector, reversed?);
 
         /**
          * Verifies that url contains details page link and returns to previous page
