@@ -22,4 +22,13 @@ export default {
         backToProductsButton: '[data-test="back-to-products"]',
         addToCart: '*[data-test^="add-to-cart"]',
     },
+    cart: {
+        itemQuantity: '.cart_quantity',
+        itemName: '.inventory_item_name',
+        itemDescription: '.inventory_item_desc',
+        itemPrice: '.inventory_item_price',
+        removeButton: '*[data-test^="remove-"]',
+        continueShoppingButton: '[data-test="continue-shopping"]',
+        checkoutButton: '[data-test="checkout"]',
+    },
 };
