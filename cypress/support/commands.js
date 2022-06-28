@@ -1,5 +1,4 @@
 import selectors from '../helpers/selectors';
-
 const loginPage = selectors.loginPage;
 
 Cypress.Commands.add('submitLoginForm', (username, password) => {
@@ -111,6 +110,11 @@ Cypress.Commands.add('verifyItemDetailsPageIsOpen', () => {
     cy.go('back');
 });
 
+Cypress.Commands.add('verifyItemsPageIsOpen', () => {
+    cy.url().should('eq', Cypress.config('baseUrl') + '/inventory.html');
+    cy.go('back');
+});
+
 Cypress.Commands.add('getItemId', { prevSubject: true }, (subject) => {
     cy.wrap(subject)
         .find('a')
@@ -118,4 +122,10 @@ Cypress.Commands.add('getItemId', { prevSubject: true }, (subject) => {
         .then((id) => {
             return cy.wrap(parseInt(id.replace(/\D/g, '')));
         });
+});
+
+Cypress.Commands.add('addItemsToCart', (items) => {
+    localStorage.setItem('cart-contents', items);
+    expect(localStorage.getItem('cart-contents')).to.eq(items);
+    cy.reload();
 });

@@ -76,6 +76,15 @@ declare namespace Cypress {
         verifyItemDetailsPageIsOpen();
 
         /**
+         * Verifies that url contains items page link and returns to previous page
+         *
+         * @example
+         * cy
+         *   .verifyItemsPageIsOpen()
+         */
+        verifyItemsPageIsOpen();
+
+        /**
          * Returns id of products item element
          * Needs previous subject
          *
@@ -84,5 +93,15 @@ declare namespace Cypress {
          *   .getItemId()
          */
         getItemId();
+
+        /**
+         * Adds items to cart
+         * Reloads page
+         *
+         * @example
+         * cy
+         *   .addItemsToCart('[4,0]')
+         */
+        addItemsToCart(items);
     }
 }
