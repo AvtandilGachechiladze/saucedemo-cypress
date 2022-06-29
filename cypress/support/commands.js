@@ -34,26 +34,22 @@ Cypress.Commands.add('login', (username) => {
     );
 });
 
-// Cypress.Commands.add('loginByUI', (username, password) => {
-//     cy.session(
-//         [username, password],
-//         () => {
-//             cy.visit('/');
-//             cy.get(loginPage.usernameInput).type(username);
-//             cy.get(loginPage.passwordInput).type(password);
-//             cy.get(loginPage.loginButton).click();
-//         },
-//         {
-//             validate() {
-//                 cy.getCookie('session-username').should(
-//                     'have.property',
-//                     'value',
-//                     username,
-//                 );
-//             },
-//         },
-//     );
-// });
+Cypress.Commands.add('loginByUI', (username, password) => {
+    cy.session(
+        [username, password],
+        () => {
+            cy.visit('/');
+            cy.get(loginPage.usernameInput).type(username);
+            cy.get(loginPage.passwordInput).type(password);
+            cy.get(loginPage.loginButton).click();
+        },
+        {
+            validate() {
+                cy.verifyUserIsAuthorized(username);
+            },
+        },
+    );
+});
 
 Cypress.Commands.add('verifyTextElementsSort', ($els, reversed = false) => {
     cy.wrap(Cypress._.map($els, 'innerText')).then((val) => {
