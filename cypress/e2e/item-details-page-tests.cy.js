@@ -4,11 +4,12 @@ const users = testData.account.users;
 const productsPage = selectors.itemsPage;
 const itemDetailsPage = selectors.detailsPage;
 const itemId = testData.values.productIds[0];
+const links = testData.links;
 
 describe('Item', () => {
     beforeEach(() => {
         cy.login(users.standardUser);
-        cy.visit(`/inventory-item.html?id=${itemId}`, {
+        cy.visit(links.itemDetailsPage + itemId, {
             failOnStatusCode: false,
         });
     });
@@ -35,7 +36,7 @@ describe('Item', () => {
         cy.get(itemDetailsPage.backToProductsButton)
             .click()
             .then(() => {
-                cy.verifyItemsPageIsOpen();
+                cy.verifyPageIsOpen(links.itemsPage);
             });
     });
 });

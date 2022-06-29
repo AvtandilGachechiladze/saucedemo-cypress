@@ -91,13 +91,8 @@ Cypress.Commands.add('verifyNumericElementsSort', ($els, reversed = false) => {
     });
 });
 
-Cypress.Commands.add('verifyItemDetailsPageIsOpen', () => {
-    cy.url().should('contain', links.itemDetailsPage);
-    cy.go('back');
-});
-
-Cypress.Commands.add('verifyItemsPageIsOpen', () => {
-    cy.url().should('eq', Cypress.config('baseUrl') + links.itemsPage);
+Cypress.Commands.add('verifyPageIsOpen', (link) => {
+    cy.url().should('contain', Cypress.config('baseUrl') + link);
     cy.go('back');
 });
 

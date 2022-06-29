@@ -31,5 +31,7 @@ export default {
     links: {
         itemsPage: '/inventory.html',
         itemDetailsPage: '/inventory-item.html?id=',
+        cartPage: '/cart.html',
+        checkoutStepOnePage: '/checkout-step-one.html',
     },
 };

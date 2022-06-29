@@ -76,22 +76,13 @@ declare namespace Cypress {
         verifyNumericElementsSort(selector, reversed?);
 
         /**
-         * Verifies that url contains details page link and returns to previous page
+         * Verifies that current url contains given link and returns to previous page
          *
          * @example
          * cy
-         *   .verifyItemDetailsPageIsOpen()
+         *   .verifyPageIsOpen(link)
          */
-        verifyItemDetailsPageIsOpen();
-
-        /**
-         * Verifies that url contains items page link and returns to previous page
-         *
-         * @example
-         * cy
-         *   .verifyItemsPageIsOpen()
-         */
-        verifyItemsPageIsOpen();
+        verifyPageIsOpen(link);
 
         /**
          * Returns id of products item element

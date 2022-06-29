@@ -3,11 +3,12 @@ import selectors from '../helpers/selectors';
 const users = testData.account.users;
 const cart = selectors.cart;
 const itemId = testData.values.productIds[0];
+const links = testData.links;
 
 describe('Cart', () => {
     beforeEach(() => {
         cy.login(users.standardUser);
-        cy.visit('/cart.html', {
+        cy.visit(links.cartPage, {
             failOnStatusCode: false,
         });
     });
@@ -28,12 +29,12 @@ describe('Cart', () => {
 
     it('should have checkout button', () => {
         cy.get(cart.checkoutButton).should('be.visible').click();
-        cy.url().should('contain', '/checkout-step-one.html');
+        cy.verifyPageIsOpen(links.checkoutStepOnePage);
     });
 
     it('should have continue shopping button', () => {
         cy.get(cart.continueShoppingButton).should('be.visible').click();
-        cy.verifyItemsPageIsOpen();
+        cy.verifyPageIsOpen(links.itemsPage);
     });
 
     it('should have remove item button', () => {

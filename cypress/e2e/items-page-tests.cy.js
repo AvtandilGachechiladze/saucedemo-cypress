@@ -3,10 +3,11 @@ import selectors from '../helpers/selectors';
 const users = testData.account.users;
 const values = testData.values;
 const itemsPage = selectors.itemsPage;
+const links = testData.links;
 
 beforeEach(() => {
     cy.login(users.standardUser);
-    cy.visit('/inventory.html', { failOnStatusCode: false });
+    cy.visit(links.itemsPage, { failOnStatusCode: false });
 });
 
 describe('Items', () => {
@@ -56,7 +57,7 @@ describe('Items', () => {
         cy.get(itemsPage.itemNames).then((itemsNames) => {
             for (let i = 0; i < itemsNames.length; i++) {
                 cy.get(itemsPage.itemNames).eq(i).click();
-                cy.verifyItemDetailsPageIsOpen();
+                cy.verifyPageIsOpen(links.itemDetailsPage);
             }
         });
     });
@@ -65,7 +66,7 @@ describe('Items', () => {
         cy.get(itemsPage.itemImages).then((itemsImages) => {
             for (let i = 0; i < itemsImages.length; i++) {
                 cy.get(itemsPage.itemImages).eq(i).click();
-                cy.verifyItemDetailsPageIsOpen();
+                cy.verifyPageIsOpen(links.itemDetailsPage);
             }
         });
     });

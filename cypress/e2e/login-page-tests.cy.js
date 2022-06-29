@@ -4,6 +4,7 @@ const users = testData.account.users;
 const passwords = testData.account.passwords;
 const errorMessages = testData.errorMessages;
 const loginPage = selectors.loginPage;
+const links = testData.links;
 
 beforeEach(() => {
     cy.visit('/');
@@ -19,7 +20,7 @@ describe('User', () => {
     it('should be authorized and redirected to items page', () => {
         cy.submitLoginForm(users.standardUser, passwords.correct);
         cy.verifyUserIsAuthorized(users.standardUser);
-        cy.verifyItemsPageIsOpen();
+        cy.verifyPageIsOpen(links.itemsPage);
     });
 
     it('should be shown locked out error message', () => {
