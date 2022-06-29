@@ -24,8 +24,8 @@ export default {
         highToLow: 'hilo',
     },
     regex: {
-        selectEverythingButDigitsCommas: '/[^\\d.,]/g',
-        selectEverythingButDigit: '/\\D/g',
+        selectEverythingButDigitsCommas: new RegExp(/[^\d.,]/g),
+        selectEverythingButDigit: new RegExp(/\D/g),
     },
     links: {
         itemsPage: '/inventory.html',
