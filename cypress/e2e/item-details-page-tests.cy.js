@@ -1,46 +1,42 @@
 import testData from '../helpers/testData';
 import selectors from '../helpers/selectors';
 const users = testData.account.users;
-const productsPage = selectors.productsPage;
-const detailsPage = selectors.detailsPage;
-//TODO expand list, better if it'll be dynamic
-const productIds = [0, 4];
+const productsPage = selectors.itemsPage;
+const itemDetailsPage = selectors.detailsPage;
+const itemId = testData.values.productIds[0];
+const links = testData.links;
 
 describe('Item', () => {
-    for (let i in productIds) {
-        beforeEach(() => {
-            cy.login(users.standardUser);
-            cy.visit(`/inventory-item.html?id=${i}`, {
-                failOnStatusCode: false,
+    beforeEach(() => {
+        cy.login(users.standardUser);
+        cy.visit(links.itemDetailsPage + itemId, {
+            failOnStatusCode: false,
+        });
+    });
+
+    it('details should be shown', () => {
+        cy.get(itemDetailsPage.itemName).should('be.visible');
+        cy.get(itemDetailsPage.itemDescription).should('be.visible');
+        cy.get(itemDetailsPage.itemImage).imageShouldBeVisible();
+        cy.get(itemDetailsPage.itemPrice).should('be.visible');
+    });
+
+    it('should be added to cart', () => {
+        cy.get(itemDetailsPage.addToCart)
+            .click()
+            .then(() => {
+                expect(localStorage.getItem('cart-contents')).to.contain(
+                    itemId,
+                );
+                cy.get(productsPage.cartBadge).should('have.text', 1);
             });
-        });
+    });
 
-        it(`details should be displayed - id: ${i}`, () => {
-            cy.get(detailsPage.itemName).should('be.visible');
-            cy.get(detailsPage.itemDescription).should('be.visible');
-            cy.get(detailsPage.itemImage).should('be.visible');
-            cy.get(detailsPage.itemPrice).should('be.visible');
-        });
-
-        it.only(`should be added to cart after clicking "add to cart" button - id: ${i}`, () => {
-            cy.get(detailsPage.addToCart)
-                .click()
-                .then(() => {
-                    cy.url().should(
-                        'contain',
-                        JSON.parse(localStorage.getItem('cart-contents')).at(-1)
-                    );
-
-                    cy.get(productsPage.cartBadge).should('have.text', 1);
-                });
-        });
-
-        it(`back button should lead to items page - id: ${i}`, () => {
-            cy.get(detailsPage.backToProductsButton)
-                .click()
-                .then(() => {
-                    cy.verifyItemsPageIsOpen();
-                });
-        });
-    }
+    it('back button should lead to items page', () => {
+        cy.get(itemDetailsPage.backToProductsButton)
+            .click()
+            .then(() => {
+                cy.verifyPageIsOpen(links.itemsPage);
+            });
+    });
 });
