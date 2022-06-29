@@ -112,5 +112,16 @@ declare namespace Cypress {
          *   .addItemsToCart('[4,0]')
          */
         addItemsToCart(items);
+
+        /**
+         * Checks if image is visible
+         * by checking its naturalWidth property
+         *
+         * @example
+         * cy
+         *   .get(imageSelector)
+         *   .imageShouldBeVisible()
+         */
+        imageShouldBeVisible();
     }
 }

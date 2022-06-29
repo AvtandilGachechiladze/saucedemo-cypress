@@ -22,6 +22,7 @@ export default {
         z_to_a: 'za',
         lowToHigh: 'lohi',
         highToLow: 'hilo',
+        productIds: [0],
     },
     regex: {
         selectEverythingButDigitsCommas: new RegExp(/[^\d.,]/g),

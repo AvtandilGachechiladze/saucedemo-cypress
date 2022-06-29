@@ -39,9 +39,7 @@ describe('Items', () => {
             .find('img')
             .should('have.length', values.numberOfItems)
             .each((image) => {
-                cy.wrap(image)
-                    .should('have.prop', 'naturalWidth')
-                    .and('be.greaterThan', 0);
+                cy.wrap(image).imageShouldBeVisible();
             });
     });
 

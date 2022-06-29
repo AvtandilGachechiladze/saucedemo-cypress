@@ -117,3 +117,13 @@ Cypress.Commands.add('addItemsToCart', (items) => {
     expect(localStorage.getItem('cart-contents')).to.eq(items);
     cy.reload();
 });
+
+Cypress.Commands.add(
+    'imageShouldBeVisible',
+    { prevSubject: true },
+    (subject) => {
+        cy.wrap(subject)
+            .should('have.prop', 'naturalWidth')
+            .and('be.greaterThan', 0);
+    },
+);
