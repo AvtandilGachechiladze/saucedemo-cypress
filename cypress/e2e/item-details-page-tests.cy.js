@@ -6,14 +6,14 @@ const itemDetailsPage = selectors.detailsPage;
 const itemId = testData.values.productIds[0];
 const links = testData.links;
 
-describe('Item', () => {
-    beforeEach(() => {
-        cy.login(users.standardUser);
-        cy.visit(links.itemDetailsPage + itemId, {
-            failOnStatusCode: false,
-        });
+beforeEach(() => {
+    cy.login(users.standardUser);
+    cy.visit(links.itemDetailsPage + itemId, {
+        failOnStatusCode: false,
     });
+});
 
+describe('Item', () => {
     it('details should be shown', () => {
         cy.get(itemDetailsPage.itemName).should('be.visible');
         cy.get(itemDetailsPage.itemDescription).should('be.visible');

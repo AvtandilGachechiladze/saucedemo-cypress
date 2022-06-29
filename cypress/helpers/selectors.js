@@ -23,7 +23,7 @@ export default {
         backToProductsButton: '[data-test="back-to-products"]',
         addToCart: '*[data-test^="add-to-cart"]',
     },
-    cart: {
+    cartPage: {
         itemQuantity: '.cart_quantity',
         itemName: '.inventory_item_name',
         itemDescription: '.inventory_item_desc',
@@ -31,5 +31,13 @@ export default {
         removeButton: '*[data-test^="remove-"]',
         continueShoppingButton: '[data-test="continue-shopping"]',
         checkoutButton: '[data-test="checkout"]',
+    },
+    checkoutStepOnePage: {
+        firstName: '[data-test="firstName"]',
+        lastName: '[data-test="lastName"]',
+        postalCode: '[data-test="postalCode"]',
+        errorMessage: '[data-test="error"]',
+        continueButton: '[data-test="continue"]',
+        cancelButton: '[data-test="cancel"]',
     },
 };
