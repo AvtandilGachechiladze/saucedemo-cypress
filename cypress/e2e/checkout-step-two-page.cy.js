@@ -1,10 +1,9 @@
 import testData from '../helpers/testData';
 import selectors from '../helpers/selectors';
+
 const users = testData.account.users;
 const checkoutStepTwo = selectors.checkoutStepTwoPage;
 const links = testData.links;
-const errorMessages = testData.errorMessages;
-const checkout = testData.checkout;
 const regex = testData.regex;
 
 beforeEach(() => {

@@ -1,5 +1,6 @@
 import selectors from '../helpers/selectors';
 import testData from '../helpers/testData';
+
 const loginPage = selectors.loginPage;
 const regex = testData.regex;
 const links = testData.links;
