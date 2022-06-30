@@ -1,18 +1,18 @@
 import testData from '../helpers/testData';
 import selectors from '../helpers/selectors';
 const users = testData.account.users;
-const cart = selectors.cart;
+const cart = selectors.cartPage;
 const itemId = testData.values.productIds[0];
 const links = testData.links;
 
-describe('Cart', () => {
-    beforeEach(() => {
-        cy.login(users.standardUser);
-        cy.visit(links.cartPage, {
-            failOnStatusCode: false,
-        });
+beforeEach(() => {
+    cy.login(users.standardUser);
+    cy.visit(links.cartPage, {
+        failOnStatusCode: false,
     });
+});
 
+describe('Cart', () => {
     it('should be empty', () => {
         expect(localStorage.getItem('cart-contents')).to.eq(null);
         cy.get('.inventory_item_name').should('not.exist');

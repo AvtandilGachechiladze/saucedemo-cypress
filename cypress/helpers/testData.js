@@ -15,6 +15,14 @@ export default {
         lockedOutUser: 'Epic sadface: Sorry, this user has been locked out.',
         wrongUsernameOrPassword:
             'Epic sadface: Username and password do not match any user in this service',
+        requiredFirstName: 'Error: First Name is required',
+        requiredLastName: 'Error: Last Name is required',
+        requiredPostalCode: 'Error: Postal Code is required',
+    },
+    checkout: {
+        firstname: 'Avtandil',
+        lastname: 'Gachechiladze',
+        postalCode: '1039',
     },
     values: {
         numberOfItems: 6,
@@ -33,5 +41,6 @@ export default {
         itemDetailsPage: '/inventory-item.html?id=',
         cartPage: '/cart.html',
         checkoutStepOnePage: '/checkout-step-one.html',
+        checkoutStepTwoPage: '/checkout-step-two.html',
     },
 };
