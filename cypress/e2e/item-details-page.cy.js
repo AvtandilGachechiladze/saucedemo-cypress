@@ -1,5 +1,6 @@
 import testData from '../helpers/testData';
 import selectors from '../helpers/selectors';
+
 const users = testData.account.users;
 const productsPage = selectors.itemsPage;
 const itemDetailsPage = selectors.detailsPage;

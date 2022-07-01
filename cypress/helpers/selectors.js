@@ -40,4 +40,17 @@ export default {
         continueButton: '[data-test="continue"]',
         cancelButton: '[data-test="cancel"]',
     },
+    checkoutStepTwoPage: {
+        itemTotal: '.summary_subtotal_label',
+        tax: '.summary_tax_label',
+        total: '.summary_total_label',
+        finishButton: '[data-test="finish"]',
+        cancelButton: '[data-test="cancel"]',
+        summeryInfoLabel: '.summary_info_label',
+        summeryValueLabel: '.summary_value_label',
+        itemNames: '.inventory_item_name',
+        itemDescriptions: '.inventory_item_desc',
+        itemPrices: '.inventory_item_price',
+        itemQuantities: '.cart_quantity',
+    },
 };

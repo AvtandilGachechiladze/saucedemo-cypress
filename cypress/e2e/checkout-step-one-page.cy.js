@@ -1,5 +1,6 @@
 import testData from '../helpers/testData';
 import selectors from '../helpers/selectors';
+
 const users = testData.account.users;
 const checkoutStepOne = selectors.checkoutStepOnePage;
 const links = testData.links;
@@ -33,7 +34,7 @@ describe('Checkout step one page', () => {
         cy.verifyPageIsOpen(links.cartPage);
     });
 
-    context('should show error message after submitting ', () => {
+    context('should show error message after submitting', () => {
         it('empty form', () => {
             cy.get(checkoutStepOne.continueButton).click();
             cy.get(checkoutStepOne.errorMessage).should(
