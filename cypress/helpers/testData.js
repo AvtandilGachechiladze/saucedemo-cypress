@@ -42,5 +42,6 @@ export default {
         cartPage: '/cart.html',
         checkoutStepOnePage: '/checkout-step-one.html',
         checkoutStepTwoPage: '/checkout-step-two.html',
+        checkoutComplete: '/checkout-complete.html',
     },
 };

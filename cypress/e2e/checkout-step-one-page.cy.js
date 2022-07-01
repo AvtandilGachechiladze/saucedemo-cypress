@@ -34,7 +34,7 @@ describe('Checkout step one page', () => {
         cy.verifyPageIsOpen(links.cartPage);
     });
 
-    context('should show error message after submitting ', () => {
+    context('should show error message after submitting', () => {
         it('empty form', () => {
             cy.get(checkoutStepOne.continueButton).click();
             cy.get(checkoutStepOne.errorMessage).should(

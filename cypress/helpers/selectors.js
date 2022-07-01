@@ -48,5 +48,9 @@ export default {
         cancelButton: '[data-test="cancel"]',
         summeryInfoLabel: '.summary_info_label',
         summeryValueLabel: '.summary_value_label',
+        itemNames: '.inventory_item_name',
+        itemDescriptions: '.inventory_item_desc',
+        itemPrices: '.inventory_item_price',
+        itemQuantities: '.cart_quantity',
     },
 };
