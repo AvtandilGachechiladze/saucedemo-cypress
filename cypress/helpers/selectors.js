@@ -53,4 +53,10 @@ export default {
         itemPrices: '.inventory_item_price',
         itemQuantities: '.cart_quantity',
     },
+    completeCheckoutPage: {
+        header: '.complete-header',
+        text: '.complete-text',
+        backHomeButton: '[data-test="back-to-products"]',
+        image: '.pony_express',
+    },
 };
