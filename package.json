@@ -5,7 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "cypress run --e2e --browser chrome",
+        "testMobile": "cypress run --env platform=mobile --e2e --browser chrome",
         "start": "npx cypress open --e2e --browser chrome",
+        "startMobile": "npx cypress open --env platform=mobile --e2e --browser chrome",
         "prepare": "husky install"
     },
     "repository": {
