@@ -37,7 +37,7 @@ describe('Item', () => {
         cy.get(itemDetailsPage.backToProductsButton)
             .click()
             .then(() => {
-                cy.verifyPageIsOpen(links.itemsPage);
+                cy.verifyPageIsOpen(links.itemsPage, false);
             });
     });
 });

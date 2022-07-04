@@ -27,6 +27,6 @@ describe('Checkout complete page', () => {
 
     it('should have back home button', () => {
         cy.get(checkoutComplete.backHomeButton).should('be.visible').click();
-        cy.verifyPageIsOpen(links.itemsPage);
+        cy.verifyPageIsOpen(links.itemsPage, false);
     });
 });

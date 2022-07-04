@@ -24,7 +24,7 @@ describe('Burger menu', () => {
 
     it('all items should open items page', () => {
         cy.get(burgerMenu.allItemsButton).click();
-        cy.verifyPageIsOpen(links.itemsPage);
+        cy.verifyPageIsOpen(links.itemsPage, false);
     });
 
     it('about should open about page', () => {
@@ -34,8 +34,7 @@ describe('Burger menu', () => {
 
     it('logout should clear the session', () => {
         cy.get(burgerMenu.logoutButton).click();
-        cy.verifyPageIsOpen('/');
-        cy.getCookie('session-username').should('not.exist');
+        cy.verifyPageIsOpen('/', false);
     });
 
     it('reset app state should clear the cart', () => {

@@ -55,12 +55,12 @@ describe('Checkout step two page', () => {
 
     it('should go to finish order page', () => {
         cy.get(checkoutStepTwo.finishButton).should('be.visible').click();
-        cy.verifyPageIsOpen(links.checkoutComplete);
+        cy.verifyPageIsOpen(links.checkoutComplete, false);
     });
 
     it('should go to cart page', () => {
         cy.get(checkoutStepTwo.cancelButton).should('be.visible').click();
-        cy.verifyPageIsOpen(links.itemsPage);
+        cy.verifyPageIsOpen(links.itemsPage, false);
     });
 
     context('one item', () => {

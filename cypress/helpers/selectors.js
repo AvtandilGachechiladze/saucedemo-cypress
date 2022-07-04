@@ -63,8 +63,8 @@ export default {
         openButton: '#react-burger-menu-btn',
         allItemsButton: '#inventory_sidebar_link',
         aboutButton: '#about_sidebar_link',
-        logoutButton: '#about_sidebar_link',
+        logoutButton: '#logout_sidebar_link',
         resetAppStateButton: '#about_sidebar_link',
-        closeButton: 'react-burger-cross-btn',
+        closeButton: '#react-burger-cross-btn',
     },
 };

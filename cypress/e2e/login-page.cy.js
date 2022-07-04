@@ -21,7 +21,7 @@ describe('User', () => {
     it('should be authorized and redirected to items page', () => {
         cy.submitLoginForm(users.standardUser, passwords.correct);
         cy.verifyUserIsAuthorized(users.standardUser);
-        cy.verifyPageIsOpen(links.itemsPage);
+        cy.verifyPageIsOpen(links.itemsPage, false);
     });
 
     it('should be shown locked out error message', () => {

@@ -3,7 +3,6 @@ import testData from '../helpers/testData';
 
 const loginPage = selectors.loginPage;
 const regex = testData.regex;
-const links = testData.links;
 
 Cypress.Commands.add('submitLoginForm', (username, password) => {
     cy.get(loginPage.usernameInput).type(username);
@@ -88,9 +87,11 @@ Cypress.Commands.add('verifyNumericElementsSort', ($els, reversed = false) => {
     });
 });
 
-Cypress.Commands.add('verifyPageIsOpen', (link) => {
+Cypress.Commands.add('verifyPageIsOpen', (link, goBack) => {
     cy.url().should('contain', Cypress.config('baseUrl') + link);
-    cy.go('back');
+    if (goBack) {
+        cy.go('back');
+    }
 });
 
 Cypress.Commands.add('getItemId', { prevSubject: true }, (subject) => {
