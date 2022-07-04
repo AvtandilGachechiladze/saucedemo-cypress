@@ -58,7 +58,7 @@ describe('Items', () => {
         cy.get(itemsPage.itemNames).then((itemsNames) => {
             for (let i = 0; i < itemsNames.length; i++) {
                 cy.get(itemsPage.itemNames).eq(i).click();
-                cy.verifyPageIsOpen(links.itemDetailsPage);
+                cy.verifyPageIsOpen(links.itemDetailsPage, true);
             }
         });
     });
@@ -67,7 +67,7 @@ describe('Items', () => {
         cy.get(itemsPage.itemImages).then((itemsImages) => {
             for (let i = 0; i < itemsImages.length; i++) {
                 cy.get(itemsPage.itemImages).eq(i).click();
-                cy.verifyPageIsOpen(links.itemDetailsPage);
+                cy.verifyPageIsOpen(links.itemDetailsPage, true);
             }
         });
     });

@@ -59,4 +59,12 @@ export default {
         backHomeButton: '[data-test="back-to-products"]',
         image: '.pony_express',
     },
+    burgerMenu: {
+        openButton: '#react-burger-menu-btn',
+        allItemsButton: '#inventory_sidebar_link',
+        aboutButton: '#about_sidebar_link',
+        logoutButton: '#logout_sidebar_link',
+        resetAppStateButton: '#about_sidebar_link',
+        closeButton: '#react-burger-cross-btn',
+    },
 };

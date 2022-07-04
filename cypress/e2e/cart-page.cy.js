@@ -30,12 +30,12 @@ describe('Cart', () => {
 
     it('should have checkout button', () => {
         cy.get(cart.checkoutButton).should('be.visible').click();
-        cy.verifyPageIsOpen(links.checkoutStepOnePage);
+        cy.verifyPageIsOpen(links.checkoutStepOnePage, false);
     });
 
     it('should have continue shopping button', () => {
         cy.get(cart.continueShoppingButton).should('be.visible').click();
-        cy.verifyPageIsOpen(links.itemsPage);
+        cy.verifyPageIsOpen(links.itemsPage, false);
     });
 
     it('should have remove item button', () => {

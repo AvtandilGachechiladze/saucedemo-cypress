@@ -59,7 +59,7 @@ declare namespace Cypress {
          * cy
          *   .verifyTextElementsSort(jqueryList, true)
          */
-        verifyTextElementsSort(selector, reversed?);
+        verifyTextElementsSort(selector, reversed?: boolean);
 
         /**
          * Gets a list of jquery elements removes non-numeric symbols, and verifies that elements are ascending
@@ -73,16 +73,16 @@ declare namespace Cypress {
          * cy
          *   .verifyNumericElementsSort(jqueryList, true)
          */
-        verifyNumericElementsSort(selector, reversed?);
+        verifyNumericElementsSort(selector, reversed?: boolean);
 
         /**
          * Verifies that current url contains given link and returns to previous page
          *
          * @example
          * cy
-         *   .verifyPageIsOpen(link)
+         *   .verifyPageIsOpen(link, true)
          */
-        verifyPageIsOpen(link);
+        verifyPageIsOpen(link, goBack: boolean);
 
         /**
          * Returns id of products item element
