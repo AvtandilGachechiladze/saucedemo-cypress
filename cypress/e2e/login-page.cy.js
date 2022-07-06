@@ -1,5 +1,9 @@
 import testData from '../helpers/testData';
 import selectors from '../helpers/selectors';
+import {
+    submitLoginForm,
+    checkLoginFormErrorMessage,
+} from '../helpers/functions';
 
 const users = testData.account.users;
 const passwords = testData.account.passwords;
@@ -19,18 +23,18 @@ describe('User', () => {
     });
 
     it('should be authorized and redirected to items page', () => {
-        cy.submitLoginForm(users.standardUser, passwords.correct);
+        submitLoginForm(users.standardUser, passwords.correct);
         cy.verifyUserIsAuthorized(users.standardUser);
         cy.verifyPageIsOpen(links.itemsPage, false);
     });
 
     it('should be shown locked out error message', () => {
-        cy.submitLoginForm(users.lockedOutUser, passwords.correct);
-        cy.checkLoginFormErrorMessage(errorMessages.lockedOutUser);
+        submitLoginForm(users.lockedOutUser, passwords.correct);
+        checkLoginFormErrorMessage(errorMessages.lockedOutUser);
     });
 
     it('should be shown wrong username or password error message', () => {
-        cy.submitLoginForm(users.standardUser, passwords.incorrect);
-        cy.checkLoginFormErrorMessage(errorMessages.wrongUsernameOrPassword);
+        submitLoginForm(users.standardUser, passwords.incorrect);
+        checkLoginFormErrorMessage(errorMessages.wrongUsernameOrPassword);
     });
 });
