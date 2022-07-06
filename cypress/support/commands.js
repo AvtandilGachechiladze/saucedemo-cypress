@@ -4,6 +4,14 @@ import testData from '../helpers/testData';
 const loginPage = selectors.loginPage;
 const regex = testData.regex;
 
+//todo add every command here
+// Cypress.Commands.addAll({
+//     submitLoginForm(username, password) {
+//         cy.get(loginPage.usernameInput).type(username);
+//         cy.get(loginPage.passwordInput).type(password);
+//         cy.get(loginPage.loginButton).click();
+//     },
+// });
 Cypress.Commands.add('submitLoginForm', (username, password) => {
     cy.get(loginPage.usernameInput).type(username);
     cy.get(loginPage.passwordInput).type(password);
@@ -120,3 +128,13 @@ Cypress.Commands.add(
             .and('be.greaterThan', 0);
     },
 );
+
+Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
+    if (Cypress.env('platform') === 'mobile') {
+        cy.viewport('iphone-7').then(() => {
+            return originalFn(url, options);
+        });
+    } else {
+        return originalFn(url, options);
+    }
+});
