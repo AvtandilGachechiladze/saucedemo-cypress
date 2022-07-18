@@ -29,8 +29,8 @@ describe('Checkout step two page', () => {
                 parseFloat(
                     value
                         .text()
-                        .replace(regex.selectEverythingButDigitsCommas, ''),
-                ),
+                        .replace(regex.selectEverythingButDigitsCommas, '')
+                )
             ).to.eq(0);
         });
         cy.get(checkoutStepTwo.tax).then((value) => {
@@ -38,8 +38,8 @@ describe('Checkout step two page', () => {
                 parseFloat(
                     value
                         .text()
-                        .replace(regex.selectEverythingButDigitsCommas, ''),
-                ),
+                        .replace(regex.selectEverythingButDigitsCommas, '')
+                )
             ).to.eq(0);
         });
         cy.get(checkoutStepTwo.total).then((value) => {
@@ -47,8 +47,8 @@ describe('Checkout step two page', () => {
                 parseFloat(
                     value
                         .text()
-                        .replace(regex.selectEverythingButDigitsCommas, ''),
-                ),
+                        .replace(regex.selectEverythingButDigitsCommas, '')
+                )
             ).to.eq(0);
         });
     });
@@ -74,8 +74,8 @@ describe('Checkout step two page', () => {
                     parseFloat(
                         value
                             .text()
-                            .replace(regex.selectEverythingButDigitsCommas, ''),
-                    ),
+                            .replace(regex.selectEverythingButDigitsCommas, '')
+                    )
                 ).to.eq(29.99);
             });
         });
@@ -86,8 +86,8 @@ describe('Checkout step two page', () => {
                     parseFloat(
                         value
                             .text()
-                            .replace(regex.selectEverythingButDigitsCommas, ''),
-                    ),
+                            .replace(regex.selectEverythingButDigitsCommas, '')
+                    )
                 ).to.eq(2.4);
             });
         });
@@ -98,8 +98,8 @@ describe('Checkout step two page', () => {
                     parseFloat(
                         value
                             .text()
-                            .replace(regex.selectEverythingButDigitsCommas, ''),
-                    ),
+                            .replace(regex.selectEverythingButDigitsCommas, '')
+                    )
                 ).to.eq(32.39);
             });
         });
@@ -116,8 +116,8 @@ describe('Checkout step two page', () => {
                     parseFloat(
                         value
                             .text()
-                            .replace(regex.selectEverythingButDigitsCommas, ''),
-                    ),
+                            .replace(regex.selectEverythingButDigitsCommas, '')
+                    )
                 ).to.eq(39.98);
             });
         });
@@ -128,8 +128,8 @@ describe('Checkout step two page', () => {
                     parseFloat(
                         value
                             .text()
-                            .replace(regex.selectEverythingButDigitsCommas, ''),
-                    ),
+                            .replace(regex.selectEverythingButDigitsCommas, '')
+                    )
                 ).to.eq(3.2);
             });
         });
@@ -140,8 +140,8 @@ describe('Checkout step two page', () => {
                     parseFloat(
                         value
                             .text()
-                            .replace(regex.selectEverythingButDigitsCommas, ''),
-                    ),
+                            .replace(regex.selectEverythingButDigitsCommas, '')
+                    )
                 ).to.eq(43.18);
             });
         });

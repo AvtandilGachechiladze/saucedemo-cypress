@@ -26,12 +26,12 @@ describe('Checkout step one page', () => {
         cy.get(checkoutStepOne.lastName).type(checkout.lastname);
         cy.get(checkoutStepOne.postalCode).type(checkout.postalCode);
         cy.get(checkoutStepOne.continueButton).should('be.visible').click();
-        cy.verifyPageIsOpen(links.checkoutStepTwoPage);
+        cy.verifyPageIsOpen(links.checkoutStepTwoPage, false);
     });
 
     it('should have cancel button', () => {
         cy.get(checkoutStepOne.cancelButton).should('be.visible').click();
-        cy.verifyPageIsOpen(links.cartPage);
+        cy.verifyPageIsOpen(links.cartPage, false);
     });
 
     context('should show error message after submitting', () => {
@@ -39,7 +39,7 @@ describe('Checkout step one page', () => {
             cy.get(checkoutStepOne.continueButton).click();
             cy.get(checkoutStepOne.errorMessage).should(
                 'have.text',
-                errorMessages.requiredFirstName,
+                errorMessages.requiredFirstName
             );
         });
 
@@ -49,7 +49,7 @@ describe('Checkout step one page', () => {
             cy.get(checkoutStepOne.continueButton).click();
             cy.get(checkoutStepOne.errorMessage).should(
                 'have.text',
-                errorMessages.requiredFirstName,
+                errorMessages.requiredFirstName
             );
         });
 
@@ -59,7 +59,7 @@ describe('Checkout step one page', () => {
             cy.get(checkoutStepOne.continueButton).click();
             cy.get(checkoutStepOne.errorMessage).should(
                 'have.text',
-                errorMessages.requiredLastName,
+                errorMessages.requiredLastName
             );
         });
 
@@ -69,7 +69,7 @@ describe('Checkout step one page', () => {
             cy.get(checkoutStepOne.continueButton).click();
             cy.get(checkoutStepOne.errorMessage).should(
                 'have.text',
-                errorMessages.requiredPostalCode,
+                errorMessages.requiredPostalCode
             );
         });
     });
