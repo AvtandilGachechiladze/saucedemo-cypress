@@ -27,7 +27,7 @@ describe('Item', () => {
             .click()
             .then(() => {
                 expect(localStorage.getItem('cart-contents')).to.contain(
-                    itemId,
+                    itemId
                 );
                 cy.get(productsPage.cartBadge).should('have.text', 1);
             });

@@ -5,120 +5,62 @@ const loginPage = selectors.loginPage;
 const regex = testData.regex;
 
 //todo add every command here
-// Cypress.Commands.addAll({
-//     submitLoginForm(username, password) {
-//         cy.get(loginPage.usernameInput).type(username);
-//         cy.get(loginPage.passwordInput).type(password);
-//         cy.get(loginPage.loginButton).click();
-//     },
-// });
-Cypress.Commands.add('submitLoginForm', (username, password) => {
-    cy.get(loginPage.usernameInput).type(username);
-    cy.get(loginPage.passwordInput).type(password);
-    cy.get(loginPage.loginButton).click();
-});
-
-Cypress.Commands.add('verifyUserIsAuthorized', (username) => {
-    cy.getCookie('session-username').should('have.property', 'value', username);
-});
-
-Cypress.Commands.add('checkLoginFormErrorMessage', (errorMessageText) => {
-    cy.get(loginPage.errorMessage)
-        .should('have.text', errorMessageText)
-        .should('be.visible');
-});
-
-Cypress.Commands.add('login', (username) => {
-    cy.session(
-        username,
-        () => {
-            cy.setCookie('session-username', username);
-        },
-        {
-            validate() {
-                cy.verifyUserIsAuthorized(username);
+Cypress.Commands.addAll({
+    submitLoginForm(username, password) {
+        cy.get(loginPage.usernameInput).type(username);
+        cy.get(loginPage.passwordInput).type(password);
+        cy.get(loginPage.loginButton).click();
+    },
+    verifyUserIsAuthorized(username) {
+        cy.getCookie('session-username').should(
+            'have.property',
+            'value',
+            username
+        );
+    },
+    login(username) {
+        cy.session(
+            username,
+            () => {
+                cy.setCookie('session-username', username);
             },
-        },
-    );
-});
-
-Cypress.Commands.add('loginByUI', (username, password) => {
-    cy.session(
-        [username, password],
-        () => {
-            cy.visit('/');
-            cy.get(loginPage.usernameInput).type(username);
-            cy.get(loginPage.passwordInput).type(password);
-            cy.get(loginPage.loginButton).click();
-        },
-        {
-            validate() {
-                cy.verifyUserIsAuthorized(username);
+            {
+                validate() {
+                    cy.verifyUserIsAuthorized(username);
+                },
+            }
+        );
+    },
+    loginByUI(username, password) {
+        cy.session(
+            [username, password],
+            () => {
+                cy.visit('/');
+                cy.get(loginPage.usernameInput).type(username);
+                cy.get(loginPage.passwordInput).type(password);
+                cy.get(loginPage.loginButton).click();
             },
-        },
-    );
-});
-
-Cypress.Commands.add('verifyTextElementsSort', ($els, reversed = false) => {
-    cy.wrap(Cypress._.map($els, 'innerText')).then((val) => {
-        if (reversed) {
-            expect(val).to.deep.eq(Array.from(val).sort().reverse());
-        } else {
-            expect(val).to.deep.eq(Array.from(val).sort());
+            {
+                validate() {
+                    cy.verifyUserIsAuthorized(username);
+                },
+            }
+        );
+    },
+    verifyPageIsOpen(link, goBack) {
+        cy.url().should('contain', Cypress.config('baseUrl') + link);
+        if (goBack) {
+            cy.go('back');
         }
-    });
+    },
+    addItemsToCart(items) {
+        localStorage.setItem('cart-contents', items);
+        expect(localStorage.getItem('cart-contents')).to.eq(items);
+        cy.reload();
+    },
 });
 
-Cypress.Commands.add('verifyNumericElementsSort', ($els, reversed = false) => {
-    cy.wrap(Cypress._.map($els, 'innerText')).then((val) => {
-        val.forEach((element, index) => {
-            val[index] = element.replace(
-                regex.selectEverythingButDigitsCommas,
-                '',
-            );
-        });
-        if (reversed) {
-            expect(val).to.deep.eq(
-                Array.from(val)
-                    .sort(function (a, b) {
-                        return a - b;
-                    })
-                    .reverse(),
-            );
-        } else {
-            expect(val).to.deep.eq(
-                Array.from(val).sort(function (a, b) {
-                    return a - b;
-                }),
-            );
-        }
-    });
-});
-
-Cypress.Commands.add('verifyPageIsOpen', (link, goBack) => {
-    cy.url().should('contain', Cypress.config('baseUrl') + link);
-    if (goBack) {
-        cy.go('back');
-    }
-});
-
-Cypress.Commands.add('getItemId', { prevSubject: true }, (subject) => {
-    cy.wrap(subject)
-        .find('a')
-        .invoke('attr', 'id')
-        .then((id) => {
-            return cy.wrap(
-                parseInt(id.replace(regex.selectEverythingButDigit, '')),
-            );
-        });
-});
-
-Cypress.Commands.add('addItemsToCart', (items) => {
-    localStorage.setItem('cart-contents', items);
-    expect(localStorage.getItem('cart-contents')).to.eq(items);
-    cy.reload();
-});
-
+//todo find out how to add command with prevsubject in addAll()
 Cypress.Commands.add(
     'imageShouldBeVisible',
     { prevSubject: true },
@@ -126,8 +68,18 @@ Cypress.Commands.add(
         cy.wrap(subject)
             .should('have.prop', 'naturalWidth')
             .and('be.greaterThan', 0);
-    },
+    }
 );
+Cypress.Commands.add('getItemId', { prevSubject: true }, (subject) => {
+    cy.wrap(subject)
+        .find('a')
+        .invoke('attr', 'id')
+        .then((id) => {
+            return cy.wrap(
+                parseInt(id.replace(regex.selectEverythingButDigit, ''))
+            );
+        });
+});
 
 Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
     if (Cypress.env('platform') === 'mobile') {

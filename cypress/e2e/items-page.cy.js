@@ -1,5 +1,9 @@
 import testData from '../helpers/testData';
 import selectors from '../helpers/selectors';
+import {
+    verifyNumericElementsSort,
+    verifyTextElementsSort,
+} from '../helpers/functions';
 
 const users = testData.account.users;
 const values = testData.values;
@@ -84,8 +88,8 @@ describe('Items', () => {
                         .should(
                             'equal',
                             JSON.parse(
-                                localStorage.getItem('cart-contents'),
-                            ).at(-1),
+                                localStorage.getItem('cart-contents')
+                            ).at(-1)
                         );
 
                     cy.get(itemsPage.cartBadge).should('have.text', index + 1);
@@ -96,28 +100,28 @@ describe('Items', () => {
     it('should be filtered by name(a to z)', () => {
         cy.get(itemsPage.sortButton).select(values.a_to_z);
         cy.get(itemsPage.itemNames).then(($els) => {
-            cy.verifyTextElementsSort($els);
+            verifyTextElementsSort($els);
         });
     });
 
     it('should be filtered by name(z to a)', () => {
         cy.get(itemsPage.sortButton).select(values.z_to_a);
         cy.get(itemsPage.itemNames).then(($els) => {
-            cy.verifyTextElementsSort($els, true);
+            verifyTextElementsSort($els, true);
         });
     });
 
     it('should be filtered by price(low to high)', () => {
         cy.get(itemsPage.sortButton).select(values.lowToHigh);
         cy.get(itemsPage.itemPrices).then(($els) => {
-            cy.verifyNumericElementsSort($els);
+            verifyNumericElementsSort($els);
         });
     });
 
     it('should be filtered by price(high to low)', () => {
         cy.get(itemsPage.sortButton).select(values.highToLow);
         cy.get(itemsPage.itemPrices).then(($els) => {
-            cy.verifyNumericElementsSort($els, true);
+            verifyNumericElementsSort($els, true);
         });
     });
 });

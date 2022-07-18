@@ -3,15 +3,6 @@
 declare namespace Cypress {
     interface Chainable {
         /**
-         * Fills a login form with provided username and password and submits
-         *
-         * @example
-         * cy
-         *   .submitLoginForm(username, password)
-         */
-        submitLoginForm(username, password);
-
-        /**
          * Checks if session is created for given username
          *
          * @example
@@ -19,15 +10,6 @@ declare namespace Cypress {
          *   .verifyUserIsAuthorized(username)
          */
         verifyUserIsAuthorized(username);
-
-        /**
-         * Checks if an error message exists and compares provided error message text with an actual error message
-         *
-         * @example
-         * cy
-         *   .checkLoginFormErrorMessage(errorMessageText)
-         */
-        checkLoginFormErrorMessage(errorMessageText);
 
         /**
          * Sets a session cookie using provided username
@@ -46,34 +28,6 @@ declare namespace Cypress {
          *   .loginByUI(username, password)
          */
         loginByUI(username, password);
-
-        /**
-         * Gets a jquery list of elements and verifies that elements are alphabetically sorted
-         * It accepts a second boolean parameter, by default its value is false, if "true" is given actual list will be compared to an alphabetically sorted and reversed list
-         *
-         * @example
-         * cy
-         *   .verifyTextElementsSort(jqueryList)
-         *
-         * @example
-         * cy
-         *   .verifyTextElementsSort(jqueryList, true)
-         */
-        verifyTextElementsSort(selector, reversed?: boolean);
-
-        /**
-         * Gets a list of jquery elements removes non-numeric symbols, and verifies that elements are ascending
-         * It accepts a second boolean parameter, by default its value is false, if "true" is given actual list will be compared to a descending list
-         *
-         * @example
-         * cy
-         *   .verifyNumericElementsSort(jqueryList)
-         *
-         * @example
-         * cy
-         *   .verifyNumericElementsSort(jqueryList, true)
-         */
-        verifyNumericElementsSort(selector, reversed?: boolean);
 
         /**
          * Verifies that current url contains given link and returns to previous page

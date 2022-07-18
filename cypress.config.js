@@ -8,8 +8,8 @@ module.exports = defineConfig({
         experimentalSessionAndOrigin: true,
         chromeWebSecurity: false,
         watchForFileChanges: false,
-        video: false,
-        screenshotOnRunFailure: false,
+        video: true,
+        screenshotOnRunFailure: true,
         trashAssetsBeforeRuns: true,
         reporter: 'nyan',
         setupNodeEvents(on, config) {
