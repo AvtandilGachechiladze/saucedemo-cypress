@@ -4,5 +4,6 @@ cypress/videos
 cypress/screenshots
 cypress/downloads
 cypress/reports
+cypress/helpers/secrets.js
 # Webstorm files
 .idea
