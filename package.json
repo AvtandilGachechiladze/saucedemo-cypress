@@ -4,10 +4,12 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "cypress run --e2e --browser chrome",
-        "testMobile": "cypress run --env platform=mobile --e2e --browser chrome",
+        "test": "cross-env QASE_REPORT='' cypress run --e2e --browser chrome",
+        "test:qase": "cross-env QASE_REPORT=1 cypress run --e2e --browser chrome",
+        "test:mobile": "cross-env QASE_REPORT='' cypress run --env platform=mobile --e2e --browser chrome",
+        "test:mobile:qase": "cross-env QASE_REPORT=1 cypress run --env platform=mobile --e2e --browser chrome",
         "start": "npx cypress open --e2e --browser chrome",
-        "startMobile": "npx cypress open --env platform=mobile --e2e --browser chrome",
+        "start:mobile": "npx cypress open --env platform=mobile --e2e --browser chrome",
         "prepare": "husky install"
     },
     "repository": {
@@ -22,12 +24,18 @@
     },
     "homepage": "https://github.com/AvtandilGachechiladze/saucedemo-cypress#readme",
     "devDependencies": {
+        "cross-env": "^7.0.3",
         "cypress": "^10.1.0",
+        "cypress-mochawesome-reporter": "^3.2.0",
+        "cypress-multi-reporters": "^1.6.1",
         "husky": "^8.0.1",
         "lint-staged": "^13.0.0",
         "prettier": "2.6.2"
     },
     "lint-staged": {
         "*.{js,ts,json}": "prettier --write"
+    },
+    "dependencies": {
+        "cypress-qase-reporter": "^1.4.2-alpha.2"
     }
 }
