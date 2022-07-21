@@ -1,3 +1,4 @@
+import { qase } from 'cypress-qase-reporter/dist/mocha';
 import testData from '../helpers/testData';
 import selectors from '../helpers/selectors';
 import {
@@ -16,25 +17,37 @@ beforeEach(() => {
 });
 
 describe('User', () => {
-    it('should see login form', () => {
-        cy.get(loginPage.usernameInput).should('be.visible');
-        cy.get(loginPage.passwordInput).should('be.visible');
-        cy.get(loginPage.loginButton).should('be.visible');
-    });
+    qase(
+        1,
+        it('should see login form', () => {
+            cy.get(loginPage.usernameInput).should('be.visible');
+            cy.get(loginPage.passwordInput).should('be.visible');
+            cy.get(loginPage.loginButton).should('be.visible');
+        })
+    );
 
-    it('should be authorized and redirected to items page', () => {
-        submitLoginForm(users.standardUser, passwords.correct);
-        cy.verifyUserIsAuthorized(users.standardUser);
-        cy.verifyPageIsOpen(links.itemsPage, false);
-    });
+    qase(
+        2,
+        it('should be authorized and redirected to items page', () => {
+            submitLoginForm(users.standardUser, passwords.correct);
+            cy.verifyUserIsAuthorized(users.standardUser);
+            cy.verifyPageIsOpen(links.itemsPage, false);
+        })
+    );
 
-    it('should be shown locked out error message', () => {
-        submitLoginForm(users.lockedOutUser, passwords.correct);
-        checkLoginFormErrorMessage(errorMessages.lockedOutUser);
-    });
+    qase(
+        3,
+        it('should be shown locked out error message', () => {
+            submitLoginForm(users.lockedOutUser, passwords.correct);
+            checkLoginFormErrorMessage(errorMessages.lockedOutUser);
+        })
+    );
 
-    it('should be shown wrong username or password error message', () => {
-        submitLoginForm(users.standardUser, passwords.incorrect);
-        checkLoginFormErrorMessage(errorMessages.wrongUsernameOrPassword);
-    });
+    qase(
+        4,
+        it('should be shown wrong username or password error message', () => {
+            submitLoginForm(users.standardUser, passwords.incorrect);
+            checkLoginFormErrorMessage(errorMessages.wrongUsernameOrPassword);
+        })
+    );
 });
