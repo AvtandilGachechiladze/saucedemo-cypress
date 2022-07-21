@@ -4,13 +4,7 @@ import testData from '../helpers/testData';
 const loginPage = selectors.loginPage;
 const regex = testData.regex;
 
-//todo add every command here
 Cypress.Commands.addAll({
-    submitLoginForm(username, password) {
-        cy.get(loginPage.usernameInput).type(username);
-        cy.get(loginPage.passwordInput).type(password);
-        cy.get(loginPage.loginButton).click();
-    },
     verifyUserIsAuthorized(username) {
         cy.getCookie('session-username').should(
             'have.property',
@@ -60,7 +54,6 @@ Cypress.Commands.addAll({
     },
 });
 
-//todo find out how to add command with prevsubject in addAll()
 Cypress.Commands.add(
     'imageShouldBeVisible',
     { prevSubject: true },
@@ -70,6 +63,7 @@ Cypress.Commands.add(
             .and('be.greaterThan', 0);
     }
 );
+
 Cypress.Commands.add('getItemId', { prevSubject: true }, (subject) => {
     cy.wrap(subject)
         .find('a')
