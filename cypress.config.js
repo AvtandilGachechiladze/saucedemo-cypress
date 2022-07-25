@@ -1,4 +1,4 @@
-import secrets from './cypress/helpers/secrets';
+const { secrets } = require('./secrets/secrets.js');
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({

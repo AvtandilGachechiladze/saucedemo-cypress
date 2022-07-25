@@ -1,4 +1,4 @@
-export default {
+exports.secrets = {
     qase: {
         apiToken: 'api token here',
     },

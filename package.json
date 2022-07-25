@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "cross-env QASE_REPORT='' cypress run --e2e --browser chrome",
-        "test:qase": "cross-env QASE_REPORT=1 cypress run --e2e --browser chrome",
+        "test:qase": "cross-env QASE_REPORT=1 QASE_ENVIRONMENT_ID=1 cypress run --e2e --browser chrome",
         "test:mobile": "cross-env QASE_REPORT='' cypress run --env platform=mobile --e2e --browser chrome",
-        "test:mobile:qase": "cross-env QASE_REPORT=1 cypress run --env platform=mobile --e2e --browser chrome",
+        "test:mobile:qase": "cross-env QASE_REPORT=1 QASE_ENVIRONMENT_ID=2 cypress run --env platform=mobile --e2e --browser chrome",
         "start": "npx cypress open --e2e --browser chrome",
         "start:mobile": "npx cypress open --env platform=mobile --e2e --browser chrome",
         "prepare": "husky install"
