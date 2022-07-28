@@ -1,10 +1,11 @@
 pipeline{
     agent any
-
+    options {
+        ansiColor('xterm')
+    }
     environment{
         qaseApiToken = credentials('qaseApiToken')
     }
-
     stages{
         stage('Building'){
             steps{
