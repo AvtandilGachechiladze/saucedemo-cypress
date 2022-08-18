@@ -10,7 +10,7 @@ pipeline{
         stage('Building'){
             steps{
                 bat "npm install"
-                bat 'npx cross-env-shell QASE_REPORT=1 QASE_API_TOKEN=%qaseApiToken% QASE_ENVIRONMENT_ID=1 NO_COLOR=1'
+                bat 'npm run cross-env-shell QASE_REPORT=1 QASE_API_TOKEN=%qaseApiToken% QASE_ENVIRONMENT_ID=1 NO_COLOR=1'
             }
         }
         stage('Testing'){
